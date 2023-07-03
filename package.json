@@ -1,0 +1,18 @@
+{
+  "name": "delivery-service-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run startTodo\" \"npm run startDashboard\" \"npm run server\"",
+    "startTodo": "cd biker-todo && npm start",
+    "startDashboard": "cd sender-dashboard && npm start",
+    "server": "node server.js",
+    "install": "concurrently \"cd biker-todo && npm install\" \"cd sender-dashboard && npm install\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
