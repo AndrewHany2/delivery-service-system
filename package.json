@@ -7,13 +7,14 @@
     "start": "concurrently \"npm run startTodo\" \"npm run startDashboard\" \"npm run server\"",
     "startTodo": "cd biker-todo && npm start",
     "startDashboard": "cd sender-dashboard && npm start",
-    "server": "cd server && node server.js",
+    "server": "cd server && nodemon server.js",
     "install": "concurrently \"cd biker-todo && npm install\" \"cd sender-dashboard && \"cd server && npm install\"",
     "seed": "cd server && npm run seed"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "nodemon": "^2.0.22"
   }
 }
