@@ -8,7 +8,8 @@
     "startTodo": "cd biker-todo && npm start",
     "startDashboard": "cd sender-dashboard && npm start",
     "server": "cd server && node server.js",
-    "install": "concurrently \"cd biker-todo && npm install\" \"cd sender-dashboard && \"cd server && npm install\""
+    "install": "concurrently \"cd biker-todo && npm install\" \"cd sender-dashboard && \"cd server && npm install\"",
+    "seed": "cd server && npm run seed"
   },
   "author": "",
   "license": "ISC",

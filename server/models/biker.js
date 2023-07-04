@@ -10,9 +10,4 @@ const BikerSchema = new Schema(
   },
   { timestamps: true }
 );
-BikerSchema.plugin(AutoIncrement, {
-  id: "bikerCounter",
-  inc_field: "recordId",
-  start_seq: "10000",
-});
 module.exports.BikerModel = model("Biker", BikerSchema);

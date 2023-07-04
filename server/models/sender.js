@@ -11,9 +11,4 @@ const SenderSchema = new Schema(
   { timestamps: true }
 );
 
-SenderSchema.plugin(AutoIncrement, {
-  id: "senderCounter",
-  inc_field: "recordId",
-  start_seq: "10000",
-});
 module.exports.SenderModel = model("Sender", SenderSchema);
