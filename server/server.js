@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const addRoutes = require("./routes");
-const dbMongo = require("./helper/connection");
+const dbMongo = require("./helpers/connection");
 
 dbMongo.connect();
 const app = express();

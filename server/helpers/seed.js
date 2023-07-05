@@ -1,6 +1,6 @@
 const { Sender, Biker } = require("../models");
 const dbMongo = require("./connection");
-const { encryptPassword } = require("./encryption");
+const AuthService = require("../services/authService");
 
 (async () => {
   try {
@@ -13,7 +13,7 @@ const { encryptPassword } = require("./encryption");
           const newSender = {
             name: `Sender${i}`,
             email: `sender${i}@mailinator.com`,
-            password: await encryptPassword(`senderpassword_${i}`),
+            password: await AuthService.encryptPassword(`senderpassword_${i}`),
             parcels: [],
           };
           senders.push(newSender);
@@ -30,7 +30,7 @@ const { encryptPassword } = require("./encryption");
         const biker = {
           name: `Biker ${i}`,
           email: `biker${i}@mailinator.com`,
-          password: await encryptPassword(`bikerpassword_${i}`),
+          password: await AuthService.encryptPassword(`bikerpassword_${i}`),
           parcels: [],
         };
         bikers.push(biker);
