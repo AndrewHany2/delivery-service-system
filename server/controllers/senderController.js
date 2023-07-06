@@ -1,18 +1,18 @@
-const { Biker } = require("../models");
+const { Sender } = require("../models");
 const AuthService = require("../services/authService");
 
-class BikerController {
+class SenderController {
   static async login(req, res, next) {
     try {
       let params = req.body;
-      const biker = await Biker.findOne({
+      const sender = await Sender.findOne({
         email: { $regex: new RegExp(`\\b${params.email}\\b`, "i") },
       });
-      if (!biker) throw new Error("biker not found");
+      if (!sender) throw new Error("sender not found");
       params = {
         ...params,
-        storedPassword: biker.password,
-        id: biker._id,
+        storedPassword: sender.password,
+        id: sender._id,
       };
       const token = await AuthService.login(params);
       res.json(token);
@@ -21,4 +21,4 @@ class BikerController {
     }
   }
 }
-module.exports = BikerController;
+module.exports = SenderController;

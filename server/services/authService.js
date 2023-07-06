@@ -29,7 +29,7 @@ class AuthService {
   }
 
   static async login({ email, password, storedPassword, id }) {
-    if (this.comparePasswords(password, storedPassword)) {
+    if (await this.comparePasswords(password, storedPassword)) {
       const payload = {
         id,
         email: email,
