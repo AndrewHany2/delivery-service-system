@@ -10,6 +10,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import AuthorizedRoute from "./AuthorizedRoute";
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
