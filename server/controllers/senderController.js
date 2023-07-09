@@ -1,4 +1,4 @@
-const { Sender } = require("../models");
+const { Sender, Parcel } = require("../models");
 const AuthService = require("../services/authService");
 
 class SenderController {
@@ -15,7 +15,18 @@ class SenderController {
         id: sender._id,
       };
       const token = await AuthService.login(params);
-      res.json(token);
+      res.json({ token, email: sender.email });
+    } catch (error) {
+      return next(error);
+    }
+  }
+  static async sendParcel(req, res, next) {
+    try {
+      const { pickupAddress, dropoffAddress } = req.body;
+      const parcel = await Parcel.create({ pickupAddress, dropoffAddress });
+      req.user.parcels.push(parcel);
+      await req.user.save();
+      res.json(parcel);
     } catch (error) {
       return next(error);
     }

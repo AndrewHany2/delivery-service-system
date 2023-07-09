@@ -5,4 +5,9 @@ const loginSchema = Joi.object({
   password: Joi.string().min(5).required(),
 });
 
-module.exports = { loginSchema };
+const sendParcelSchema = Joi.object({
+  pickupAddress: Joi.string().required(),
+  dropoffAddress: Joi.string().required(),
+});
+
+module.exports = { loginSchema, sendParcelSchema };

@@ -13,10 +13,10 @@ function Send() {
     <div>
       <Formik
         validationSchema={Yup.object().shape({
-          pickup: Yup.string().required("Required"),
-          dropoff: Yup.string().required("Required"),
+          pickupAddress: Yup.string().required("Required"),
+          dropoffAddress: Yup.string().required("Required"),
         })}
-        initialValues={{ pickup: "", dropoff: "" }}
+        initialValues={{ pickupAddress: "", dropoffAddress: "" }}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           setTimeout(() => {
             mutation.mutate(values, { onSuccess: () => resetForm() });
@@ -35,20 +35,20 @@ function Send() {
               <label htmlFor="exampleInputEmail1">Pickup address</label>
               <Field
                 type="text"
-                name="pickup"
+                name="pickupAddress"
                 className="form-control"
                 placeholder="Pickup address"
-                value={values.pickup}
+                value={values.pickupAddress}
               />
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputPassword1">Drop-off address</label>
               <Field
                 type="text"
-                name="dropoff"
+                name="dropoffAddress"
                 className="form-control"
                 placeholder="Drop-off address"
-                value={values.dropoff}
+                value={values.dropoffAddress}
               />
             </div>
             <button type="submit" className="btn btn-primary mt-2">

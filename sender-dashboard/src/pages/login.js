@@ -6,11 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../api";
 
 export default function Login() {
-  const [isHidden, setIsHidden] = useState(true);
   const navigate = useNavigate();
   const mutation = useMutation(login, {
     onSuccess: (response) => {
-      localStorage.setItem("user", response.data);
+      localStorage.setItem("user", JSON.stringify(response.data));
       navigate("/");
     },
   });
@@ -59,7 +58,7 @@ export default function Login() {
                 <label>Password</label>
                 <Field
                   name="password"
-                  type={isHidden ? "password" : "text"}
+                  type="password"
                   className="form-control mt-1"
                   placeholder="Enter password"
                   value={values.password}

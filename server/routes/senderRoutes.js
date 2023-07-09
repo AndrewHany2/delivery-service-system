@@ -1,13 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const { SenderController } = require("../controllers");
-const { loginSchema } = require("../middlewares/validations");
-const { validationMiddleware } = require("../middlewares");
+const { loginSchema, sendParcelSchema } = require("../middlewares/validations");
+const { validationMiddleware, authMiddleware } = require("../middlewares");
+const { Sender } = require("../models");
 
 router.post(
   "/login",
   validationMiddleware(loginSchema, false),
   SenderController.login
+);
+router.post(
+  "/parcel/send",
+  validationMiddleware(sendParcelSchema, false),
+  authMiddleware(Sender),
+  SenderController.sendParcel
 );
 
 module.exports = router;

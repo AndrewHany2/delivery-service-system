@@ -2,9 +2,21 @@ import axios from "axios";
 const baseUrl = "http://localhost:3000";
 
 export function login({ email, password }) {
-  return axios.post(`${baseUrl}/api/biker/login`, { email, password });
+  return axios.post(`${baseUrl}/api/sender/login`, { email, password });
 }
 
-export function send({ email, password }) {
-  return axios.post(`${baseUrl}/api/parcel/send`, { email, password });
+export function send({ pickupAddress, dropoffAddress }) {
+  const auth = JSON.parse(localStorage.getItem("user"));
+  return axios.post(
+    `${baseUrl}/api/sender/parcel/send`,
+    {
+      pickupAddress,
+      dropoffAddress,
+    },
+    {
+      headers: {
+        authorization: auth.token,
+      },
+    }
+  );
 }

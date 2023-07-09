@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 function Navbar() {
+  const navigate = useNavigate();
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light px-5">
       <button
         className="navbar-toggler"
         type="button"
@@ -12,7 +15,7 @@ function Navbar() {
       >
         <span className="navbar-toggler-icon" />
       </button>
-      <div className="collapse navbar-collapse mx-5" id="navbarTogglerDemo01">
+      <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
         <a className="navbar-brand" href="/">
           Delivery System
         </a>
@@ -28,6 +31,18 @@ function Navbar() {
             </a>
           </li>
         </ul>
+      </div>
+      <div className="my-2 my-lg-0">
+        <button
+          className="btn btn-outline-success my-2 my-sm-0"
+          type="submit"
+          onClick={() => {
+            localStorage.removeItem("user");
+            navigate("/login");
+          }}
+        >
+          Logout
+        </button>
       </div>
     </nav>
   );
