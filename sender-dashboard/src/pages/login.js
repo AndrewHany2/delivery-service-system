@@ -5,28 +5,19 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api";
 
-// const getCharacterValidationError = (str) => {
-//   return `Your password must have at least 1 ${str} character`;
-// };
-
-export default function Login({ navigation }) {
+export default function Login() {
   const navigate = useNavigate();
   const mutation = useMutation(login, {
-    onSuccess: () => {
-      navigate("/login");
+    onSuccess: (response) => {
+      localStorage.setItem("user", response.data);
+      navigate("/");
     },
-    onError: () => {},
   });
   return (
     <Formik
       validationSchema={Yup.object().shape({
         email: Yup.string().required("Required").email("Invalid email"),
-        password: Yup.string().required("Required"),
-        // check minimum characters
-        // .min(8, "Password must have at least 8 characters")
-        // .matches(/[0-9]/, getCharacterValidationError("digit"))
-        // .matches(/[a-z]/, getCharacterValidationError("lowercase"))
-        // .matches(/[A-Z]/, getCharacterValidationError("uppercase")),
+        password: Yup.string().min(5).required("Required"),
       })}
       initialValues={{ email: "", password: "" }}
       onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -99,6 +90,11 @@ export default function Login({ navigation }) {
                   )}
                 </button>
               </div>
+              {mutation.isError && (
+                <div className="alert alert-danger mt-3" role="alert">
+                  {mutation.error.response.data.message}
+                </div>
+              )}
             </div>
           </Form>
         </div>

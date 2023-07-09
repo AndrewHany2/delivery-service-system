@@ -15,7 +15,7 @@ class BikerController {
         id: biker._id,
       };
       const token = await AuthService.login(params);
-      res.json(token);
+      res.json({ token, email: biker.email });
     } catch (error) {
       return next(error);
     }
