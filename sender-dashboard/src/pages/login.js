@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useMutation } from "react-query";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../api";
 
 export default function Login() {
+  const [isHidden, setIsHidden] = useState(true);
   const navigate = useNavigate();
   const mutation = useMutation(login, {
     onSuccess: (response) => {
@@ -31,14 +32,10 @@ export default function Login() {
         values,
         errors,
         touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
         /* and other goodies */
       }) => (
         <div className="form-container">
-          <Form className="form">
+          <Form className="custom-form">
             <div className="form-content">
               <h3 className="form-title">Sign In</h3>
               <div className="form-group mt-3">
@@ -62,11 +59,12 @@ export default function Login() {
                 <label>Password</label>
                 <Field
                   name="password"
-                  type="password"
+                  type={isHidden ? "password" : "text"}
                   className="form-control mt-1"
                   placeholder="Enter password"
                   value={values.password}
                 />
+
                 {touched.password && errors.password && (
                   <ErrorMessage
                     name="password"
@@ -92,7 +90,9 @@ export default function Login() {
               </div>
               {mutation.isError && (
                 <div className="alert alert-danger mt-3" role="alert">
-                  {mutation.error.response.data.message}
+                  {mutation.error?.response
+                    ? mutation.error?.response?.data?.message
+                    : mutation.error?.message}
                 </div>
               )}
             </div>

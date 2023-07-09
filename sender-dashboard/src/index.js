@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import AuthorizedRoute from "./AuthorizedRoute";
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
+import Send from "./pages/send";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
@@ -26,13 +27,21 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <AuthorizedRoute>
-        <Dashboard></Dashboard>
+        <Dashboard />
       </AuthorizedRoute>
     ),
   },
   {
     path: "/login",
     element: <Login></Login>,
+  },
+  {
+    path: "/send",
+    element: (
+      <AuthorizedRoute>
+        <Send />
+      </AuthorizedRoute>
+    ),
   },
 ]);
 
