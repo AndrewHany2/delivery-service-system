@@ -40,6 +40,13 @@ function Send() {
                 placeholder="Pickup address"
                 value={values.pickupAddress}
               />
+              {touched.pickupAddress && errors.pickupAddress && (
+                <ErrorMessage
+                  name="pickupAddress"
+                  component="div"
+                  render={(msg) => <div style={{ color: "red" }}>{msg}</div>}
+                />
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputPassword1">Drop-off address</label>
@@ -50,10 +57,33 @@ function Send() {
                 placeholder="Drop-off address"
                 value={values.dropoffAddress}
               />
+              {touched.dropoffAddress && errors.dropoffAddress && (
+                <ErrorMessage
+                  name="dropoffAddress"
+                  component="div"
+                  render={(msg) => <div style={{ color: "red" }}>{msg}</div>}
+                />
+              )}
             </div>
-            <button type="submit" className="btn btn-primary mt-2">
+            <button
+              type="submit"
+              className="btn btn-primary mt-2"
+              disabled={mutation.isLoading}
+            >
               Submit
             </button>
+            {mutation.isError && (
+              <div className="alert alert-danger mt-3" role="alert">
+                {mutation.error?.response
+                  ? mutation.error?.response?.data?.message
+                  : mutation.error?.message}
+              </div>
+            )}
+            {mutation.isSuccess && (
+              <div className="alert alert-success mt-3" role="alert">
+                Parcel Created Successfully, Thanks
+              </div>
+            )}
           </Form>
         )}
       </Formik>

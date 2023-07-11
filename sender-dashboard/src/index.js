@@ -11,6 +11,7 @@ import AuthorizedRoute from "./AuthorizedRoute";
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
 import Send from "./pages/send";
+import Status from "./pages/status";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
     element: (
       <AuthorizedRoute>
         <Send />
+      </AuthorizedRoute>
+    ),
+  },
+  {
+    path: "/status",
+    element: (
+      <AuthorizedRoute>
+        <Status />
       </AuthorizedRoute>
     ),
   },

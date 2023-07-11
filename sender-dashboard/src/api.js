@@ -20,3 +20,12 @@ export function send({ pickupAddress, dropoffAddress }) {
     }
   );
 }
+
+export function getParcels() {
+  const auth = JSON.parse(localStorage.getItem("user"));
+  return axios.get(`${baseUrl}/api/parcel/`, {
+    headers: {
+      authorization: auth.token,
+    },
+  });
+}
