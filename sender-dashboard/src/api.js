@@ -23,7 +23,7 @@ export function send({ pickupAddress, dropoffAddress }) {
 
 export function getParcels() {
   const auth = JSON.parse(localStorage.getItem("user"));
-  return axios.get(`${baseUrl}/api/parcel/`, {
+  return axios.get(`${baseUrl}/api/sender/parcels`, {
     headers: {
       authorization: auth.token,
     },

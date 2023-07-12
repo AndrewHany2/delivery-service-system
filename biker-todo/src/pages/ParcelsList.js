@@ -1,7 +1,7 @@
 import { getParcels } from "../api";
 import { useQuery } from "react-query";
 
-function Status() {
+function ParcelsList() {
   const { isLoading, error, data } = useQuery("repoData", getParcels);
   if (isLoading) {
     return (
@@ -21,6 +21,7 @@ function Status() {
             <th scope="col">Pickup Address</th>
             <th scope="col">Dropoff Address</th>
             <th scope="col">status</th>
+            <th scope="col">action</th>
           </tr>
         </thead>
         <tbody>
@@ -41,4 +42,4 @@ function Status() {
   );
 }
 
-export default Status;
+export default ParcelsList;

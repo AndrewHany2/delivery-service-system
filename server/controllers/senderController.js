@@ -31,5 +31,13 @@ class SenderController {
       return next(error);
     }
   }
+  static async getParcels(req, res, next) {
+    try {
+      const parcels = await Parcel.find({ _id: { $in: req.user.parcels } });
+      res.json(parcels);
+    } catch (error) {
+      return next(error);
+    }
+  }
 }
 module.exports = SenderController;

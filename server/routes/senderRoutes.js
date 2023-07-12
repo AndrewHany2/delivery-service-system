@@ -17,4 +17,6 @@ router.post(
   SenderController.sendParcel
 );
 
+router.get("/parcels", authMiddleware(Sender), SenderController.getParcels);
+
 module.exports = router;
