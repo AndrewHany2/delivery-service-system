@@ -18,10 +18,8 @@ function Send() {
         })}
         initialValues={{ pickupAddress: "", dropoffAddress: "" }}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          setTimeout(() => {
-            mutation.mutate(values, { onSuccess: () => resetForm() });
-            setSubmitting(false);
-          }, 400);
+          mutation.mutate(values, { onSuccess: () => resetForm() });
+          setSubmitting(false);
         }}
       >
         {({
