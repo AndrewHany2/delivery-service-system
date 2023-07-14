@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run startDashboard\" \"npm run server\"",
+    "start": "concurrently \"npm run startDashboard\" \"npm run startTodo\" \"npm run server\"",
     "startTodo": "cd biker-todo && npm start",
     "startDashboard": "cd sender-dashboard && npm start",
     "server": "cd server && nodemon server.js",
