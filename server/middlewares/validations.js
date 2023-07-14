@@ -10,4 +10,10 @@ const sendParcelSchema = Joi.object({
   dropoffAddress: Joi.string().required(),
 });
 
-module.exports = { loginSchema, sendParcelSchema };
+const pickParcelSchema = Joi.object({
+  pickupAddress: Joi.string().required(),
+  dropoffAddress: Joi.string().required(),
+  status: Joi.string().required(),
+});
+
+module.exports = { loginSchema, sendParcelSchema, pickParcelSchema };
