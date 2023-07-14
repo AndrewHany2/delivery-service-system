@@ -1,14 +1,8 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import AuthorizedRoute from "./AuthorizedRoute";
-import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
 import Send from "./pages/send";
 import Status from "./pages/status";
@@ -28,7 +22,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <AuthorizedRoute>
-        <Dashboard />
+        <Status />
       </AuthorizedRoute>
     ),
   },
