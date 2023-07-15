@@ -11,9 +11,9 @@ const sendParcelSchema = Joi.object({
 });
 
 const pickParcelSchema = Joi.object({
-  pickupAddress: Joi.string().required(),
-  dropoffAddress: Joi.string().required(),
-  status: Joi.string().required(),
+  _id: Joi.string().required(),
+  pickupDateTime: Joi.string().required(),
+  dropoffDateTime: Joi.string().required(),
 });
 
 module.exports = { loginSchema, sendParcelSchema, pickParcelSchema };

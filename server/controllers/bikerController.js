@@ -1,4 +1,5 @@
 const { Biker, Parcel } = require("../models");
+const mongoose = require("mongoose");
 const AuthService = require("../services/authService");
 
 class BikerController {
@@ -23,7 +24,10 @@ class BikerController {
 
   static async getAllParcels(req, res, next) {
     try {
-      const parcels = await Parcel.find({ status: "PENDING" });
+      const parcels = await Parcel.find({
+        status: "PENDING",
+        biker: { $ne: null },
+      });
       res.json(parcels);
     } catch (error) {
       return next(error);
@@ -32,14 +36,17 @@ class BikerController {
 
   static async pickParcel(req, res, next) {
     try {
-      const parcel = await Parcel.updateById(req.body._id, {
-        status: "PICKED",
-        isPicked: true,
-      });
+      const parcel = await Parcel.findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(req.body._id) },
+        {
+          status: "PICKED",
+          isPicked: true,
+        }
+      );
       if (!parcel) {
         throw new Error("Can't update parcel");
       }
-      const bikerParcels = req.user.parcel;
+      const bikerParcels = req.user.parcels;
       bikerParcels.push(parcel._id);
       const updateBiker = await req.user.save();
       if (!updateBiker) {

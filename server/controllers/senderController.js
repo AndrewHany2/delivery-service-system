@@ -23,7 +23,11 @@ class SenderController {
   static async sendParcel(req, res, next) {
     try {
       const { pickupAddress, dropoffAddress } = req.body;
-      const parcel = await Parcel.create({ pickupAddress, dropoffAddress });
+      const parcel = await Parcel.create({
+        pickupAddress,
+        dropoffAddress,
+        sender: req.user._id,
+      });
       req.user.parcels.push(parcel);
       await req.user.save();
       res.json(parcel);

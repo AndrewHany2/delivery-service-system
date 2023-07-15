@@ -8,7 +8,8 @@ const ParcelSchema = new Schema(
     pickupTimestamp: Date,
     deliveryTimestamp: Date,
     status: { type: String, default: "PENDING" },
-    biker: { type: Schema.Types.ObjectId, ref: "Biker" },
+    biker: { type: Schema.Types.ObjectId, ref: "Biker", default: null },
+    sender: { type: Schema.Types.ObjectId, ref: "Sender", required: true },
   },
   { timestamps: true }
 );
