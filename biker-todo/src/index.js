@@ -26,6 +26,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/status",
+    element: (
+      <AuthorizedRoute>
+        <ParcelsList />
+      </AuthorizedRoute>
+    ),
+  },
+  {
     path: "/login",
     element: <Login />,
   },

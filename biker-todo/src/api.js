@@ -12,3 +12,19 @@ export function getParcels() {
     },
   });
 }
+export function pickParcelAPI(parcel) {
+  const auth = JSON.parse(localStorage.getItem("user"));
+  return axios.post(
+    `${baseUrl}/api/biker/pick-parcel`,
+    {
+      _id: parcel._id,
+      pickupDateTime: parcel.pickupDateTime,
+      dropoffDateTime: parcel.dropoffDateTime,
+    },
+    {
+      headers: {
+        authorization: auth.token,
+      },
+    }
+  );
+}

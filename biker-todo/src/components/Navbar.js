@@ -20,11 +20,6 @@ function Navbar() {
           Delivery System
         </a>
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li className="nav-item active">
-            <a className="nav-link" href="/send">
-              Send
-            </a>
-          </li>
           <li className="nav-item">
             <a className="nav-link" href="/status">
               Status
