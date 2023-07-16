@@ -8,7 +8,9 @@ import { pickParcelAPI } from "../api";
 function ParcelsList() {
   const [isOpen, setIsOpen] = useState(false);
   const [clickedParcel, setClickedParcel] = useState();
-  const { isLoading, data, refetch } = useQuery("repoData", getParcels);
+  const { isLoading, data, refetch } = useQuery("parcels", getParcels, {
+    refetchOnMount: true,
+  });
 
   const mutation = useMutation(pickParcelAPI, {
     onSuccess: (res) => {

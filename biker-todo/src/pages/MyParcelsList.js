@@ -5,7 +5,8 @@ import Timestamp from "react-timestamp";
 
 function MyParcelsList() {
   const [parcels, setParcels] = useState(null);
-  const { isLoading, data, refetch } = useQuery("repoData", getProfile, {
+  const { isLoading, data, refetch } = useQuery("profile", getProfile, {
+    refetchOnMount: true,
     onSuccess: (data) => {
       setParcels(data.data.parcels);
     },

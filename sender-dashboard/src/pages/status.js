@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import { getParcels } from "../api";
 import { useQuery } from "react-query";
 import Timestamp from "react-timestamp";
 
 function Status() {
-  const { isLoading, error, data } = useQuery("repoData", getParcels);
+  const { isLoading, error, data, refetch } = useQuery("parcels", getParcels, {
+    refetchOnMount: true,
+  });
   if (isLoading) {
     return (
       <div className="d-flex align-items-center justify-content-center">
