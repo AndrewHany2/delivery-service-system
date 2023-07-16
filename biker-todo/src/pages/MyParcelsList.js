@@ -1,9 +1,16 @@
-import { getParcels } from "../api";
 import { useQuery } from "react-query";
+import { getProfile } from "../api";
+import { useState } from "react";
 import Timestamp from "react-timestamp";
 
-function Status() {
-  const { isLoading, error, data } = useQuery("repoData", getParcels);
+function MyParcelsList() {
+  const [parcels, setParcels] = useState(null);
+  const { isLoading, data, refetch } = useQuery("repoData", getProfile, {
+    onSuccess: (data) => {
+      setParcels(data.data.parcels);
+    },
+  });
+
   if (isLoading) {
     return (
       <div className="d-flex align-items-center justify-content-center">
@@ -13,9 +20,10 @@ function Status() {
       </div>
     );
   }
+
   return (
     <div className="m-5">
-      {data && data.data.length > 0 ? (
+      {parcels && parcels.length > 0 ? (
         <table className="table">
           <thead>
             <tr>
@@ -28,7 +36,7 @@ function Status() {
             </tr>
           </thead>
           <tbody>
-            {data.data.map((row, index) => {
+            {parcels.map((row, index) => {
               return (
                 <tr key={index}>
                   <th scope="row">{index}</th>
@@ -63,4 +71,4 @@ function Status() {
   );
 }
 
-export default Status;
+export default MyParcelsList;

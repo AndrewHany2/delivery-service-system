@@ -26,7 +26,7 @@ class BikerController {
     try {
       const parcels = await Parcel.find({
         status: "PENDING",
-        biker: { $ne: null },
+        biker: { $eq: null },
       });
       res.json(parcels);
     } catch (error) {
@@ -41,6 +41,9 @@ class BikerController {
         {
           status: "PICKED",
           isPicked: true,
+          biker: req.user._id,
+          pickupDate: req.body.pickupDateTime,
+          dropoffDate: req.body.dropoffDateTime,
         }
       );
       if (!parcel) {
@@ -53,6 +56,21 @@ class BikerController {
         throw new Error("error in adding parcel to biker");
       }
       res.json({ success: true });
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  static async getProfile(req, res, next) {
+    try {
+      const profile = await Biker.findOne({
+        _id: new mongoose.Types.ObjectId(req.user._id),
+      })
+        .select("-password")
+        .populate("parcels")
+        .lean();
+
+      res.json({ ...profile });
     } catch (error) {
       return next(error);
     }

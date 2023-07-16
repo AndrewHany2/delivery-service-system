@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import AuthorizedRoute from "./AuthorizedRoute";
 import ParcelsList from "./pages/ParcelsList";
+import MyParcelsList from "./pages/MyParcelsList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./pages/login";
 import "./index.css";
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
     path: "/status",
     element: (
       <AuthorizedRoute>
-        <ParcelsList />
+        <MyParcelsList />
       </AuthorizedRoute>
     ),
   },

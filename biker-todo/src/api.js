@@ -12,6 +12,14 @@ export function getParcels() {
     },
   });
 }
+export function getProfile() {
+  const auth = JSON.parse(localStorage.getItem("user"));
+  return axios.get(`${baseUrl}/api/biker/profile`, {
+    headers: {
+      authorization: auth.token,
+    },
+  });
+}
 export function pickParcelAPI(parcel) {
   const auth = JSON.parse(localStorage.getItem("user"));
   return axios.post(

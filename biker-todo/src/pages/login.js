@@ -12,6 +12,9 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(response.data));
       navigate("/");
     },
+    onError: (err) => {
+      localStorage.removeItem("user");
+    },
   });
   return (
     <Formik

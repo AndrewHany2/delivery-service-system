@@ -13,6 +13,8 @@ router.post(
 
 router.get("/parcels", authMiddleware(Biker), BikerController.getAllParcels);
 
+router.get("/profile", authMiddleware(Biker), BikerController.getProfile);
+
 router.post(
   "/pick-parcel",
   validationMiddleware(pickParcelSchema, false),
